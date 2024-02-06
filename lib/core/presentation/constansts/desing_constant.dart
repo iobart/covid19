@@ -1,2 +1,9 @@
 const String kAssetPath = "assets/";
+const String kLottiePath = "assets/lotties/";
+const String kWrongRoute = "${kLottiePath}wrong_route.json";
 const String kLogoCovid = "${kAssetPath}fondo.png";
+const String kLoginLogo = "${kAssetPath}logo.webp";
+const String kCredentials= "${kAssetPath}credential.json";
+const String kFacebook = "${kAssetPath}face.png";
+const String kGoogle = "${kAssetPath}google.png";
+const String kInstagram = "${kAssetPath}insta.webp";
