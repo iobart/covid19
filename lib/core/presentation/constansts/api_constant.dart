@@ -1,0 +1,1 @@
+const String kDataCovid= 'https://api.covidtracking.com/v1/us/current.json';

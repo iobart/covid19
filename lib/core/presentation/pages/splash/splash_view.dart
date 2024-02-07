@@ -34,7 +34,7 @@ class SplashScreenState extends State<SplashScreen> {
         builder: (_, SplashViewModel splashViewModel, __) {
           if (splashViewModel.loadingPercent == 1.0) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              Navigator.of(context).pushNamed(loginRoute);
+              Navigator.of(context).pushReplacementNamed(loginRoute);
             });
           }
           return Column(

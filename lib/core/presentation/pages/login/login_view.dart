@@ -1,6 +1,7 @@
 import 'package:covid19/core/data/models/user_model.dart';
 import 'package:covid19/core/di/di_locator.dart';
 import 'package:covid19/core/presentation/constansts/desing_constant.dart';
+import 'package:covid19/core/presentation/constansts/route_constant.dart';
 import 'package:covid19/core/presentation/pages/login/login_view_model.dart';
 import 'package:covid19/core/presentation/utils/custom_dialog.dart';
 import 'package:covid19/core/presentation/utils/custom_text_field.dart';
@@ -40,9 +41,6 @@ class _LoginViewState extends State<LoginView> {
                  child: Column(
                    children: <Widget>[
                      _createLoginContent(),
-                     SizedBox(
-                       height: 10.h,
-                     ),
                    ],
                  ),
                ),
@@ -60,14 +58,14 @@ class _LoginViewState extends State<LoginView> {
   void _authUser() async {
     _hideKeyboard();
     if (_loginFormKey.currentState!.validate()) {
-      print(_numberDocument);
       final UserModel? loggedIn =
-      await widget._loginViewModel.loginUser(_typeDocument,_numberDocument, _password);
+      await widget._loginViewModel.loginUser(_typeDocument.toUpperCase(),_numberDocument, _password);
       if (loggedIn != null) {
       //  _handleSuccessLogIn();
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Iniciando sesión...')),
         );
+        Navigator.of(context).pushReplacementNamed(homeRoute);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Datos u contraseña incorrecta...'),backgroundColor: Colors.red,),
@@ -222,6 +220,7 @@ class _LoginViewState extends State<LoginView> {
 
   Widget createButton(String assetName, String platform, BuildContext context) {
     return FloatingActionButton(
+      key: Key(platform),
       onPressed: () {
         showDialog(
           context: context,

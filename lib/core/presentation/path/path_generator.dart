@@ -1,5 +1,7 @@
 import 'package:covid19/core/presentation/constansts/desing_constant.dart';
 import 'package:covid19/core/presentation/constansts/route_constant.dart';
+import 'package:covid19/core/presentation/pages/home/home_view.dart';
+import 'package:covid19/core/presentation/pages/home/home_view_model.dart';
 import 'package:covid19/core/presentation/pages/login/login_view.dart';
 import 'package:covid19/core/presentation/pages/login/login_view_model.dart';
 import 'package:covid19/core/presentation/utils/image_utils.dart';
@@ -14,6 +16,15 @@ class RouterGenerator {
             : LoginViewModel();
         return MaterialPageRoute<void>(
             builder: (BuildContext context) => LoginView(loginViewModel: viewModel));
+        case homeRoute:
+          final HomeViewModel viewModel = settings.arguments != null
+            ? settings.arguments as HomeViewModel
+            : HomeViewModel();
+        return MaterialPageRoute<void>(
+            builder: (BuildContext context) => HomeView(
+              homeViewModel: viewModel,
+            ));
+
       default:
         return MaterialPageRoute(
           builder: (BuildContext context) => Scaffold(

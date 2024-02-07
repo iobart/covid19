@@ -34,7 +34,6 @@ class UserRepository implements IUserRepository {
 
   @override
   Future<bool> registerUser(UserModel user) {
-    // TODO: implement registerUser
     throw UnimplementedError();
   }
 
