@@ -7,3 +7,4 @@ const String kCredentials= "${kAssetPath}credential.json";
 const String kFacebook = "${kAssetPath}face.png";
 const String kGoogle = "${kAssetPath}google.png";
 const String kInstagram = "${kAssetPath}insta.webp";
+const String kSitPerson = "${kAssetPath}sitPerson.jpg";

@@ -18,6 +18,6 @@ class UserRemotoDataSource  {
 
 
   Future<void> logoutUser() async {
-  //  return await  _covidApi.logoutUser();
+  // return await  _covidApi.logoutUser();
   }
 }

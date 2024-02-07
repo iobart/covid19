@@ -1,4 +1,6 @@
+import 'package:covid19/core/presentation/pages/home/home_view_model.dart';
 import 'package:covid19/core/presentation/pages/splash/splash_view_model.dart';
+import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -6,15 +8,17 @@ import 'core/di/di_locator.dart';
 import 'core/presentation/pages/login/login_view_model.dart';
 import 'core/presentation/pages/splash/splash_view.dart';
 import 'core/presentation/path/path_generator.dart';
+import 'core/presentation/utils/theme_helper.dart';
 
 void main() {
   setupLocator();
   runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider<SplashViewModel>(create: (_) => locator<SplashViewModel>()),
-        ChangeNotifierProvider<LoginViewModel>(create: (_) => locator<LoginViewModel>())
+        ChangeNotifierProvider<LoginViewModel>(create: (_) => locator<LoginViewModel>()),
+        ChangeNotifierProvider<HomeViewModel>(create: (_) => locator<HomeViewModel>()),
       ],
-      child: const MyApp()));
+      child: EasyDynamicThemeWidget(child: const MyApp())));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,9 +32,9 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: Colors.black,
-          canvasColor: Colors.orange,),
+        theme:ThemeHelp().lightThemeData,
+        darkTheme: ThemeHelp().darkThemeData,
+        themeMode: EasyDynamicTheme.of(context).themeMode,
         home:  SplashScreen(),
         onGenerateRoute: RouterGenerator.generateRoute,
       );}
