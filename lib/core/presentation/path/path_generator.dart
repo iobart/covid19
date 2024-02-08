@@ -2,6 +2,7 @@ import 'package:covid19/core/presentation/constansts/desing_constant.dart';
 import 'package:covid19/core/presentation/constansts/route_constant.dart';
 import 'package:covid19/core/presentation/pages/home/home_view.dart';
 import 'package:covid19/core/presentation/pages/home/home_view_model.dart';
+import 'package:covid19/core/presentation/pages/info/info_detail_view.dart';
 import 'package:covid19/core/presentation/pages/info/info_view.dart';
 import 'package:covid19/core/presentation/pages/info/info_view_model.dart';
 import 'package:covid19/core/presentation/pages/login/login_view.dart';
@@ -34,6 +35,15 @@ class RouterGenerator {
         return MaterialPageRoute<void>(
             builder: (BuildContext context) => InfoView(
                   homeViewModel: viewModel,
+                ));
+
+      case detailRoute:
+        final InfoViewModel viewModel = settings.arguments != null
+            ? settings.arguments as InfoViewModel
+            : InfoViewModel();
+        return MaterialPageRoute<void>(
+            builder: (BuildContext context) => InfoDetailView(
+               infoViewModel: viewModel,
                 ));
       default:
         return MaterialPageRoute(

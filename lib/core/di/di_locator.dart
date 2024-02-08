@@ -1,6 +1,7 @@
 
 import 'package:covid19/core/domain/entities/usecases/get_current_state_use_case.dart';
 import 'package:covid19/core/domain/entities/usecases/get_data_covid_use_case.dart';
+import 'package:covid19/core/domain/entities/usecases/get_state_info_use_case.dart';
 import 'package:covid19/core/domain/entities/usecases/login_user_use_case.dart';
 import 'package:covid19/core/domain/entities/usecases/package_info_user_use_case.dart';
 import 'package:covid19/core/domain/repositories/api/covid_api.dart';
@@ -45,6 +46,7 @@ void setupLocator() {
   locator.registerLazySingleton<PackageInfoUserUseCase>(() => PackageInfoUserUseCase());
   locator.registerLazySingleton<GetDataCovidUseCase>(() => GetDataCovidUseCase());
   locator.registerLazySingleton<GetCurrentstateUseCase>(() => GetCurrentstateUseCase());
+  locator.registerLazySingleton<GetStateInfoUseCase>(() => GetStateInfoUseCase());
 
   //api
   locator.registerLazySingleton<CovidAPi>(() => CovidAPi());
