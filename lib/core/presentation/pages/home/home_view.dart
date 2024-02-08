@@ -4,6 +4,7 @@ import 'package:covid19/core/presentation/constansts/desing_constant.dart';
 import 'package:covid19/core/presentation/constansts/route_constant.dart';
 import 'package:covid19/core/presentation/utils/custom_card.dart';
 import 'package:covid19/core/presentation/utils/custom_info.dart';
+import 'package:covid19/core/presentation/utils/image_utils.dart';
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -39,7 +40,9 @@ class HomeView extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.popAndPushNamed(context, stateRoute);
+          },
           backgroundColor: Theme.of(context).canvasColor,
           child: const Icon(Icons.add),
         ),
@@ -87,7 +90,7 @@ class HomeView extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
+              return Center(child: _noItem());
             } else {
               return Column(
                 children: [
@@ -141,6 +144,11 @@ class HomeView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _noItem(){
+    return getLottieFromJson(
+        fit: BoxFit.contain, height: 300, lottie: kWrongRoute,repeat: true);
   }
 
   Widget _createDarkModeToggle(

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:covid19/core/data/dtos/covid_data_model_dto.dart';
+import 'package:covid19/core/data/dtos/state_current_model_dto.dart';
 import 'package:covid19/core/data/dtos/user_model_dto.dart';
 import 'package:covid19/core/presentation/constansts/api_constant.dart';
 import 'package:covid19/core/presentation/constansts/desing_constant.dart';
@@ -24,6 +25,7 @@ class CovidAPi{
         number:  credentials['credentials']['numeroDocumento'],
         password: credentials['credentials']['password'],
       );
+      _logger.i('User authenticated: $userDTO');
       return userDTO;
     } else {
       return UserDTO();
@@ -44,11 +46,24 @@ class CovidAPi{
     return null;
   }
 
+  Future<List<StateCurrentModelDto?>?> getCurrentState() async {
+    final Response call = await _get(kCurrentState);
+    final dynamic callBody = jsonDecode(call.body);
+    if (callBody is Map<String, dynamic>) {
+      return [StateCurrentModelDto.fromJson(callBody)];
+    } else if (callBody is List<dynamic> && callBody.isNotEmpty) {
+      return callBody.map((item) => StateCurrentModelDto.fromJson(item)).toList();
+    }
+
+    return null;
+  }
+
 
   /// Generic method to make a GET request
   Future<Response> _get(String url) async {
     Uri uri = Uri.parse(url);
     Response callResponse = (await apiCall(get(uri)))!;
+    _logger.i('GET $uri\nResponse: ${callResponse.body}');
     return callResponse;
   }
 }
