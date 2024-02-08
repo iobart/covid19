@@ -1,4 +1,5 @@
 import 'package:covid19/core/data/dtos/state_current_model_dto.dart';
+import 'package:covid19/core/data/dtos/state_info_model_dto.dart';
 import 'package:covid19/core/di/di_locator.dart';
 import 'package:covid19/core/domain/repositories/api/covid_api.dart';
 
@@ -7,11 +8,16 @@ class InfoRemoteDataSource {
 
   InfoRemoteDataSource({
     CovidAPi? covidApi,
-  }) : _covidApi = covidApi ??locator<CovidAPi>();
+  }) : _covidApi = covidApi ?? locator<CovidAPi>();
 
-
-  Future<List<StateCurrentModelDto?>>getCurrentState()async{
-    List<StateCurrentModelDto?>?  stateCurrentModelDto =await _covidApi.getCurrentState();
+  Future<List<StateCurrentModelDto?>> getCurrentState() async {
+    List<StateCurrentModelDto?>? stateCurrentModelDto =
+        await _covidApi.getCurrentState();
     return stateCurrentModelDto ?? [StateCurrentModelDto()];
+  }
+
+  Future<StateInfoModelDto> getStateInfo(String state) async {
+    StateInfoModelDto? stateInfoModelDto = await _covidApi.getStateInfo(state);
+    return stateInfoModelDto ?? StateInfoModelDto();
   }
 }

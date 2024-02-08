@@ -1,3 +1,4 @@
+
 import 'package:covid19/core/data/models/state_current_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -120,8 +121,7 @@ class StateCurrentModelDto {
     this.score,
     this.grade,
   });
-
-  factory StateCurrentModelDto.fromModel({required StateCurrentModel model}) {
+  factory StateCurrentModelDto.fromModel({required StateCurrentModel model}){
     return StateCurrentModelDto(
       date: model.date,
       state: model.state,
@@ -178,12 +178,11 @@ class StateCurrentModelDto {
       negativeScore: model.negativeScore,
       positiveScore: model.positiveScore,
       score: model.score,
-      grade: model.grade,
-    );
+      grade: model.grade,);
   }
 
-  factory StateCurrentModelDto.fromJson(Map<String, dynamic> json) =>
-      _$StateCurrentModelDtoFromJson(json);
-
+factory StateCurrentModelDto.fromJson(Map<String, dynamic> json) =>
+    _$StateCurrentModelDtoFromJson(json);
   Map<String, dynamic> toJson() => _$StateCurrentModelDtoToJson(this);
+
 }

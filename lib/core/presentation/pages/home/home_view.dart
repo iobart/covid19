@@ -198,7 +198,7 @@ class HomeView extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
+          return Center(child: _noItem());
         } else {
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -272,6 +272,7 @@ class HomeView extends StatelessWidget {
       ],
     );
   }
+
 
   String _getDateFormatData() {
     DateTime now = DateTime.now();

@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:covid19/core/data/dtos/covid_data_model_dto.dart';
 import 'package:covid19/core/data/dtos/state_current_model_dto.dart';
+import 'package:covid19/core/data/dtos/state_info_model_dto.dart';
 import 'package:covid19/core/data/dtos/user_model_dto.dart';
+import 'package:covid19/core/data/models/state_info_model.dart';
 import 'package:covid19/core/presentation/constansts/api_constant.dart';
 import 'package:covid19/core/presentation/constansts/desing_constant.dart';
 import 'package:covid19/core/presentation/utils/network_utils.dart';
@@ -58,6 +60,15 @@ class CovidAPi{
     return null;
   }
 
+  Future<StateInfoModelDto?> getStateInfo(String state) async {
+    final String url = kCurrentInfoState.replaceAll('{state}', state);
+    final Response call = await _get(url);
+    final dynamic callBody = jsonDecode(call.body);
+    if (callBody is Map<String, dynamic>) {
+      return StateInfoModelDto.fromJson(callBody);
+    }
+    return null;
+  }
 
   /// Generic method to make a GET request
   Future<Response> _get(String url) async {

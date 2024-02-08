@@ -1,5 +1,7 @@
 import 'package:covid19/core/data/dtos/state_current_model_dto.dart';
+import 'package:covid19/core/data/dtos/state_info_model_dto.dart';
 import 'package:covid19/core/data/models/state_current_model.dart';
+import 'package:covid19/core/data/models/state_info_model.dart';
 import 'package:covid19/core/di/di_locator.dart';
 
 import 'i_info_repository.dart';
@@ -19,6 +21,13 @@ class InfoRepository implements IfoRepository {
     final List<StateCurrentModelDto?> stateCurrentModelDtos = await _infoRemoteDataSource.getCurrentState();
     final List<StateCurrentModel> stateCurrentModels = stateCurrentModelDtos.map((dto) => StateCurrentModel.fromStateCurrentModelDto(model: dto!)).toList();
     return stateCurrentModels;
+  }
+
+  @override
+  Future<StateInfoModel> getStateInfo(String state) async {
+    final StateInfoModelDto stateInfoModelDto = await _infoRemoteDataSource.getStateInfo(state);
+    final StateInfoModel stateInfoModel = StateInfoModel.fromStateInfoModelDto(dto: stateInfoModelDto);
+    return stateInfoModel;
   }
 
 }
