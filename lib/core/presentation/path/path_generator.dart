@@ -2,6 +2,8 @@ import 'package:covid19/core/presentation/constansts/desing_constant.dart';
 import 'package:covid19/core/presentation/constansts/route_constant.dart';
 import 'package:covid19/core/presentation/pages/home/home_view.dart';
 import 'package:covid19/core/presentation/pages/home/home_view_model.dart';
+import 'package:covid19/core/presentation/pages/info/info_view.dart';
+import 'package:covid19/core/presentation/pages/info/info_view_model.dart';
 import 'package:covid19/core/presentation/pages/login/login_view.dart';
 import 'package:covid19/core/presentation/pages/login/login_view_model.dart';
 import 'package:covid19/core/presentation/utils/image_utils.dart';
@@ -15,16 +17,24 @@ class RouterGenerator {
             ? settings.arguments as LoginViewModel
             : LoginViewModel();
         return MaterialPageRoute<void>(
-            builder: (BuildContext context) => LoginView(loginViewModel: viewModel));
-        case homeRoute:
-          final HomeViewModel viewModel = settings.arguments != null
+            builder: (BuildContext context) =>
+                LoginView(loginViewModel: viewModel));
+      case homeRoute:
+        final HomeViewModel viewModel = settings.arguments != null
             ? settings.arguments as HomeViewModel
             : HomeViewModel();
         return MaterialPageRoute<void>(
             builder: (BuildContext context) => HomeView(
-              homeViewModel: viewModel,
-            ));
-
+                  homeViewModel: viewModel,
+                ));
+      case stateRoute:
+        final InfoViewModel viewModel = settings.arguments != null
+            ? settings.arguments as InfoViewModel
+            : InfoViewModel();
+        return MaterialPageRoute<void>(
+            builder: (BuildContext context) => InfoView(
+                  homeViewModel: viewModel,
+                ));
       default:
         return MaterialPageRoute(
           builder: (BuildContext context) => Scaffold(

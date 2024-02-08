@@ -1,4 +1,5 @@
 import 'package:covid19/core/presentation/pages/home/home_view_model.dart';
+import 'package:covid19/core/presentation/pages/info/info_view_model.dart';
 import 'package:covid19/core/presentation/pages/splash/splash_view_model.dart';
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ void main() {
         ChangeNotifierProvider<SplashViewModel>(create: (_) => locator<SplashViewModel>()),
         ChangeNotifierProvider<LoginViewModel>(create: (_) => locator<LoginViewModel>()),
         ChangeNotifierProvider<HomeViewModel>(create: (_) => locator<HomeViewModel>()),
+        ChangeNotifierProvider<InfoViewModel>(create: (_) => locator<InfoViewModel>()),
       ],
       child: EasyDynamicThemeWidget(child: const MyApp())));
 }
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return Sizer(
